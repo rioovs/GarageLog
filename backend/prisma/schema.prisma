@@ -1,0 +1,131 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+// Enums
+enum UserRole {
+  USER
+  ADMIN
+}
+
+enum OwnershipStatus {
+  OWNED
+  SOLD
+}
+
+enum VehicleType {
+  CAR
+  MOTORCYCLE
+  OTHER
+}
+
+enum ServiceItemType {
+  OIL
+  SPAREPART
+  LABOR
+  OTHER
+}
+
+enum TaxType {
+  ANNUAL
+  FIVE_YEAR
+}
+
+enum TaxStatus {
+  PENDING
+  PAID
+  OVERDUE
+}
+
+// Models
+model Profile {
+  id         String    @id @db.Uuid
+  full_name  String
+  role       UserRole  @default(USER)
+  is_active  Boolean   @default(true)
+  created_at DateTime  @default(now()) @map("created_at")
+  updated_at DateTime  @updatedAt @map("updated_at")
+  
+  vehicles   Vehicle[]
+  
+  @@map("profiles")
+}
+
+model Vehicle {
+  id               String          @id @default(uuid()) @db.Uuid
+  user_id          String          @db.Uuid
+  plate_number     String
+  brand            String
+  model            String
+  type             VehicleType     @default(CAR)
+  year             Int
+  color            String
+  owner_name       String?
+  ownership_status OwnershipStatus @default(OWNED)
+  purchase_date    DateTime?       @db.Date
+  sold_date        DateTime?       @db.Date
+  created_at       DateTime        @default(now()) @map("created_at")
+  updated_at       DateTime        @updatedAt @map("updated_at")
+  
+  user             Profile         @relation(fields: [user_id], references: [id], onDelete: Cascade)
+  service_records  ServiceRecord[]
+  vehicle_taxes    VehicleTax[]
+  
+  @@map("vehicles")
+}
+
+model ServiceRecord {
+  id            String        @id @default(uuid()) @db.Uuid
+  vehicle_id    String        @db.Uuid
+  service_date  DateTime      @db.Date
+  odometer      Int?
+  workshop_name String?
+  total_cost    Decimal?      @db.Decimal(10, 2)
+  notes         String?       @db.Text
+  created_at    DateTime      @default(now()) @map("created_at")
+  updated_at    DateTime      @updatedAt @map("updated_at")
+  
+  vehicle       Vehicle       @relation(fields: [vehicle_id], references: [id], onDelete: Cascade)
+  service_items ServiceItem[]
+  
+  @@map("service_records")
+}
+
+model ServiceItem {
+  id                String          @id @default(uuid()) @db.Uuid
+  service_record_id String          @db.Uuid
+  item_type         ServiceItemType
+  item_name         String
+  quantity          Int
+  unit_price        Decimal         @db.Decimal(10, 2)
+  subtotal          Decimal         @db.Decimal(10, 2)
+  
+  service_record    ServiceRecord   @relation(fields: [service_record_id], references: [id], onDelete: Cascade)
+  
+  @@map("service_items")
+}
+
+model VehicleTax {
+  id                    String    @id @default(uuid()) @db.Uuid
+  vehicle_id            String    @db.Uuid
+  tax_type              TaxType
+  due_date              DateTime  @db.Date
+  reminder_days_before  Int       @default(30)
+  amount                Decimal?  @db.Decimal(10, 2)
+  status                TaxStatus @default(PENDING)
+  paid_date             DateTime? @db.Date
+  created_at            DateTime  @default(now()) @map("created_at")
+  updated_at            DateTime  @updatedAt @map("updated_at")
+  
+  vehicle               Vehicle   @relation(fields: [vehicle_id], references: [id], onDelete: Cascade)
+  
+  @@map("vehicle_taxes")
+}
