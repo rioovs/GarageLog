@@ -21,10 +21,23 @@ export default function VehiclesPage() {
 
   // Handle hash navigation
   useEffect(() => {
-    if (window.location.hash === "#settings") {
-      setActiveTab("settings")
-    } else {
-      setActiveTab("overview")
+    const handleHashChange = () => {
+      const hash = window.location.hash
+      if (hash === "#settings") {
+        setActiveTab("settings")
+      } else {
+        setActiveTab("overview")
+      }
+    }
+
+    // Check on mount
+    handleHashChange()
+
+    // Listen for hash changes
+    window.addEventListener("hashchange", handleHashChange)
+    
+    return () => {
+      window.removeEventListener("hashchange", handleHashChange)
     }
   }, [])
 

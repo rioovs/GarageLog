@@ -2097,11 +2097,25 @@ function VehiclesPage() {
     // Handle hash navigation
     (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useEffect"])({
         "VehiclesPage.useEffect": ()=>{
-            if (window.location.hash === "#settings") {
-                setActiveTab("settings");
-            } else {
-                setActiveTab("overview");
-            }
+            const handleHashChange = {
+                "VehiclesPage.useEffect.handleHashChange": ()=>{
+                    const hash = window.location.hash;
+                    if (hash === "#settings") {
+                        setActiveTab("settings");
+                    } else {
+                        setActiveTab("overview");
+                    }
+                }
+            }["VehiclesPage.useEffect.handleHashChange"];
+            // Check on mount
+            handleHashChange();
+            // Listen for hash changes
+            window.addEventListener("hashchange", handleHashChange);
+            return ({
+                "VehiclesPage.useEffect": ()=>{
+                    window.removeEventListener("hashchange", handleHashChange);
+                }
+            })["VehiclesPage.useEffect"];
         }
     }["VehiclesPage.useEffect"], []);
     const handleTabChange = (value)=>{
@@ -2148,12 +2162,12 @@ function VehiclesPage() {
                 children: "Loading vehicles..."
             }, void 0, false, {
                 fileName: "[project]/app/app/vehicles/page.tsx",
-                lineNumber: 67,
+                lineNumber: 80,
                 columnNumber: 9
             }, this)
         }, void 0, false, {
             fileName: "[project]/app/app/vehicles/page.tsx",
-            lineNumber: 66,
+            lineNumber: 79,
             columnNumber: 7
         }, this);
     }
@@ -2172,7 +2186,7 @@ function VehiclesPage() {
                                     children: "Vehicles"
                                 }, void 0, false, {
                                     fileName: "[project]/app/app/vehicles/page.tsx",
-                                    lineNumber: 78,
+                                    lineNumber: 91,
                                     columnNumber: 13
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -2180,13 +2194,13 @@ function VehiclesPage() {
                                     children: "Manage all your vehicles, service history, and tax in one place."
                                 }, void 0, false, {
                                     fileName: "[project]/app/app/vehicles/page.tsx",
-                                    lineNumber: 79,
+                                    lineNumber: 92,
                                     columnNumber: 13
                                 }, this)
                             ]
                         }, void 0, true, {
                             fileName: "[project]/app/app/vehicles/page.tsx",
-                            lineNumber: 77,
+                            lineNumber: 90,
                             columnNumber: 11
                         }, this),
                         activeTab === "overview" && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$button$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Button"], {
@@ -2198,20 +2212,20 @@ function VehiclesPage() {
                                     className: "mr-2"
                                 }, void 0, false, {
                                     fileName: "[project]/app/app/vehicles/page.tsx",
-                                    lineNumber: 83,
+                                    lineNumber: 96,
                                     columnNumber: 15
                                 }, this),
                                 " Add Vehicle"
                             ]
                         }, void 0, true, {
                             fileName: "[project]/app/app/vehicles/page.tsx",
-                            lineNumber: 82,
+                            lineNumber: 95,
                             columnNumber: 13
                         }, this)
                     ]
                 }, void 0, true, {
                     fileName: "[project]/app/app/vehicles/page.tsx",
-                    lineNumber: 76,
+                    lineNumber: 89,
                     columnNumber: 9
                 }, this),
                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$tabs$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Tabs"], {
@@ -2226,7 +2240,7 @@ function VehiclesPage() {
                                     children: "Overview"
                                 }, void 0, false, {
                                     fileName: "[project]/app/app/vehicles/page.tsx",
-                                    lineNumber: 90,
+                                    lineNumber: 103,
                                     columnNumber: 13
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$tabs$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["TabsTrigger"], {
@@ -2234,13 +2248,13 @@ function VehiclesPage() {
                                     children: "Settings"
                                 }, void 0, false, {
                                     fileName: "[project]/app/app/vehicles/page.tsx",
-                                    lineNumber: 91,
+                                    lineNumber: 104,
                                     columnNumber: 13
                                 }, this)
                             ]
                         }, void 0, true, {
                             fileName: "[project]/app/app/vehicles/page.tsx",
-                            lineNumber: 89,
+                            lineNumber: 102,
                             columnNumber: 11
                         }, this),
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$tabs$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["TabsContent"], {
@@ -2253,41 +2267,41 @@ function VehiclesPage() {
                                 onDelete: handleDelete
                             }, void 0, false, {
                                 fileName: "[project]/app/app/vehicles/page.tsx",
-                                lineNumber: 95,
+                                lineNumber: 108,
                                 columnNumber: 13
                             }, this)
                         }, void 0, false, {
                             fileName: "[project]/app/app/vehicles/page.tsx",
-                            lineNumber: 94,
+                            lineNumber: 107,
                             columnNumber: 11
                         }, this),
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$tabs$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["TabsContent"], {
                             value: "settings",
                             children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$vehicles$2f$vehicle$2d$settings$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["VehicleSettings"], {}, void 0, false, {
                                 fileName: "[project]/app/app/vehicles/page.tsx",
-                                lineNumber: 104,
+                                lineNumber: 117,
                                 columnNumber: 13
                             }, this)
                         }, void 0, false, {
                             fileName: "[project]/app/app/vehicles/page.tsx",
-                            lineNumber: 103,
+                            lineNumber: 116,
                             columnNumber: 11
                         }, this)
                     ]
                 }, void 0, true, {
                     fileName: "[project]/app/app/vehicles/page.tsx",
-                    lineNumber: 88,
+                    lineNumber: 101,
                     columnNumber: 9
                 }, this)
             ]
         }, void 0, true, {
             fileName: "[project]/app/app/vehicles/page.tsx",
-            lineNumber: 74,
+            lineNumber: 87,
             columnNumber: 7
         }, this)
     }, void 0, false, {
         fileName: "[project]/app/app/vehicles/page.tsx",
-        lineNumber: 73,
+        lineNumber: 86,
         columnNumber: 5
     }, this);
 }

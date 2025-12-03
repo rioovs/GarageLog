@@ -764,36 +764,55 @@ function TaxList({ taxes, onEdit, onDelete }) {
                                 lineNumber: 83,
                                 columnNumber: 15
                             }, this),
-                            Array.from({
-                                length: totalPages
-                            }).map((_, i)=>/*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$pagination$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["PaginationItem"], {
-                                    children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$pagination$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["PaginationLink"], {
-                                        isActive: currentPage === i + 1,
-                                        onClick: ()=>handlePageChange(i + 1),
-                                        className: "cursor-pointer",
-                                        children: i + 1
-                                    }, void 0, false, {
+                            (()=>{
+                                const pages = [];
+                                const maxVisiblePages = 5;
+                                if (totalPages <= maxVisiblePages) {
+                                    for(let i = 1; i <= totalPages; i++){
+                                        pages.push(i);
+                                    }
+                                } else {
+                                    if (currentPage <= 3) {
+                                        pages.push(1, 2, 3, '...', totalPages);
+                                    } else if (currentPage >= totalPages - 2) {
+                                        pages.push(1, '...', totalPages - 2, totalPages - 1, totalPages);
+                                    } else {
+                                        pages.push(1, '...', currentPage - 1, currentPage, currentPage + 1, '...', totalPages);
+                                    }
+                                }
+                                return pages.map((page, i)=>/*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$pagination$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["PaginationItem"], {
+                                        children: page === '...' ? /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$pagination$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["PaginationEllipsis"], {}, void 0, false, {
+                                            fileName: "[project]/components/taxes/tax-list.tsx",
+                                            lineNumber: 111,
+                                            columnNumber: 23
+                                        }, this) : /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$pagination$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["PaginationLink"], {
+                                            isActive: currentPage === page,
+                                            onClick: ()=>handlePageChange(page),
+                                            className: "cursor-pointer",
+                                            children: page
+                                        }, void 0, false, {
+                                            fileName: "[project]/components/taxes/tax-list.tsx",
+                                            lineNumber: 113,
+                                            columnNumber: 23
+                                        }, this)
+                                    }, i, false, {
                                         fileName: "[project]/components/taxes/tax-list.tsx",
-                                        lineNumber: 92,
+                                        lineNumber: 109,
                                         columnNumber: 19
-                                    }, this)
-                                }, i, false, {
-                                    fileName: "[project]/components/taxes/tax-list.tsx",
-                                    lineNumber: 91,
-                                    columnNumber: 17
-                                }, this)),
+                                    }, this));
+                            })(),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$pagination$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["PaginationItem"], {
                                 children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$pagination$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["PaginationNext"], {
                                     onClick: ()=>handlePageChange(currentPage + 1),
                                     className: currentPage === totalPages ? "pointer-events-none opacity-50" : "cursor-pointer"
                                 }, void 0, false, {
                                     fileName: "[project]/components/taxes/tax-list.tsx",
-                                    lineNumber: 103,
+                                    lineNumber: 126,
                                     columnNumber: 17
                                 }, this)
                             }, void 0, false, {
                                 fileName: "[project]/components/taxes/tax-list.tsx",
-                                lineNumber: 102,
+                                lineNumber: 125,
                                 columnNumber: 15
                             }, this)
                         ]

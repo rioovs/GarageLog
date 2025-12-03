@@ -5,7 +5,7 @@ import { useState } from "react"
 import { TaxRecord } from "@/lib/api/taxes"
 import { TaxCard } from "./tax-card"
 import { Input } from "@/components/ui/input"
-import { Pagination, PaginationContent, PaginationItem, PaginationLink, PaginationNext, PaginationPrevious } from "@/components/ui/pagination"
+import { Pagination, PaginationContent, PaginationItem, PaginationLink, PaginationNext, PaginationPrevious, PaginationEllipsis } from "@/components/ui/pagination"
 import { Search } from "lucide-react"
 
 interface TaxListProps {
@@ -87,17 +87,40 @@ export function TaxList({ taxes, onEdit, onDelete }: TaxListProps) {
                 />
               </PaginationItem>
               
-              {Array.from({ length: totalPages }).map((_, i) => (
-                <PaginationItem key={i}>
-                  <PaginationLink 
-                    isActive={currentPage === i + 1}
-                    onClick={() => handlePageChange(i + 1)}
-                    className="cursor-pointer"
-                  >
-                    {i + 1}
-                  </PaginationLink>
-                </PaginationItem>
-              ))}
+              {(() => {
+                const pages = [];
+                const maxVisiblePages = 5;
+
+                if (totalPages <= maxVisiblePages) {
+                  for (let i = 1; i <= totalPages; i++) {
+                    pages.push(i);
+                  }
+                } else {
+                  if (currentPage <= 3) {
+                    pages.push(1, 2, 3, '...', totalPages);
+                  } else if (currentPage >= totalPages - 2) {
+                    pages.push(1, '...', totalPages - 2, totalPages - 1, totalPages);
+                  } else {
+                    pages.push(1, '...', currentPage - 1, currentPage, currentPage + 1, '...', totalPages);
+                  }
+                }
+
+                return pages.map((page, i) => (
+                  <PaginationItem key={i}>
+                    {page === '...' ? (
+                      <PaginationEllipsis />
+                    ) : (
+                      <PaginationLink 
+                        isActive={currentPage === page}
+                        onClick={() => handlePageChange(page as number)}
+                        className="cursor-pointer"
+                      >
+                        {page}
+                      </PaginationLink>
+                    )}
+                  </PaginationItem>
+                ));
+              })()}
 
               <PaginationItem>
                 <PaginationNext 
