@@ -24,6 +24,10 @@ export const usersApi = {
     return apiClient.put<User>(`/api/profiles/${id}`, data);
   },
 
+  create: async (data: any) => {
+    return apiClient.post<User>('/api/users', data);
+  },
+
   delete: async (id: string) => {
     return apiClient.delete(`/api/profiles/${id}`);
   },

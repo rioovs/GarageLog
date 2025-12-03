@@ -21,7 +21,9 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select"
-import { Vehicle } from "@/lib/api/vehicles"
+import { Vehicle, vehiclesApi } from "@/lib/api/vehicles"
+import { Combobox } from "@/components/ui/combobox"
+import { useEffect } from "react"
 
 const formSchema = z.object({
   plate: z.string().min(1, "License plate is required"),
@@ -38,6 +40,20 @@ interface VehicleFormProps {
 }
 
 export function VehicleForm({ initialData, onSubmit, isLoading }: VehicleFormProps) {
+  const [options, setOptions] = useState<{ brands: string[], models: string[] }>({ brands: [], models: [] })
+
+  useEffect(() => {
+    const fetchOptions = async () => {
+      try {
+        const data = await vehiclesApi.getOptions()
+        setOptions(data)
+      } catch (error) {
+        console.error("Failed to fetch vehicle options", error)
+      }
+    }
+    fetchOptions()
+  }, [])
+
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
@@ -88,7 +104,12 @@ export function VehicleForm({ initialData, onSubmit, isLoading }: VehicleFormPro
               <FormItem>
                 <FormLabel>Brand</FormLabel>
                 <FormControl>
-                  <Input placeholder="Toyota" {...field} />
+                  <Combobox 
+                    options={options.brands} 
+                    value={field.value} 
+                    onChange={field.onChange}
+                    placeholder="Select brand"
+                  />
                 </FormControl>
                 <FormMessage />
               </FormItem>
@@ -102,7 +123,12 @@ export function VehicleForm({ initialData, onSubmit, isLoading }: VehicleFormPro
               <FormItem>
                 <FormLabel>Model</FormLabel>
                 <FormControl>
-                  <Input placeholder="Corolla" {...field} />
+                  <Combobox 
+                    options={options.models} 
+                    value={field.value} 
+                    onChange={field.onChange}
+                    placeholder="Select model"
+                  />
                 </FormControl>
                 <FormMessage />
               </FormItem>

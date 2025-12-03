@@ -11,8 +11,11 @@ import { AppSidebar } from "@/components/app/sidebar"
 
 import { useState, useEffect } from "react"
 
+import { useUser } from "@/hooks/use-user"
+
 export function TopBar() {
   const { t } = useLanguage()
+  const { user } = useUser()
   const [mounted, setMounted] = useState(false)
 
   useEffect(() => {
@@ -45,11 +48,11 @@ export function TopBar() {
         <LanguageSwitcher />
         <div className="flex items-center gap-3">
           <div className="text-right">
-            <p className="text-sm font-medium text-foreground">User</p>
-            <p className="text-xs text-muted-foreground">user@example.com</p>
+            <p className="text-sm font-medium text-foreground">{user?.name || "User"}</p>
+            <p className="text-xs text-muted-foreground">{user?.email || "Loading..."}</p>
           </div>
           <div className="w-10 h-10 bg-gradient-to-br from-blue-400 to-blue-600 rounded-full flex items-center justify-center text-white font-bold text-sm">
-            U
+            {user?.name?.charAt(0).toUpperCase() || "U"}
           </div>
         </div>
         <Button

@@ -3,16 +3,22 @@
 import { Card } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import { Plus, Edit2, Trash2, Users } from "lucide-react"
-import Link from "next/link"
 import { useState, useEffect } from "react"
 import { usersApi, User } from "@/lib/api/users"
 import { useToast } from "@/components/ui/use-toast"
 import { format } from "date-fns"
+import { UserDialogs } from "@/components/admin/user-dialogs"
 
 export default function AdminUsersPage() {
   const { toast } = useToast()
   const [users, setUsers] = useState<User[]>([])
   const [isLoading, setIsLoading] = useState(true)
+
+  // Modal State
+  const [selectedUser, setSelectedUser] = useState<User | null>(null)
+  const [isCreateOpen, setIsCreateOpen] = useState(false)
+  const [isEditOpen, setIsEditOpen] = useState(false)
+  const [isDeleteOpen, setIsDeleteOpen] = useState(false)
 
   useEffect(() => {
     loadUsers()
@@ -34,23 +40,85 @@ export default function AdminUsersPage() {
     }
   }
 
-  const handleDelete = async (id: string) => {
-    if (!confirm("Are you sure you want to delete this user?")) return
+  const handleCreate = () => {
+    setIsCreateOpen(true)
+  }
 
+  const handleEdit = (user: User) => {
+    setSelectedUser(user)
+    setIsEditOpen(true)
+  }
+
+  const handleDelete = (user: User) => {
+    setSelectedUser(user)
+    setIsDeleteOpen(true)
+  }
+
+  const handleClose = () => {
+    setIsCreateOpen(false)
+    setIsEditOpen(false)
+    setIsDeleteOpen(false)
+    setTimeout(() => setSelectedUser(null), 300)
+  }
+
+  const onCreateSubmit = async (data: any) => {
     try {
-      await usersApi.delete(id)
-      setUsers(users.filter((u) => u.id !== id))
+      await usersApi.create(data)
       toast({
         title: "Success",
-        description: "User deleted successfully",
+        description: "User created successfully",
       })
-    } catch (error) {
-      console.error("Failed to delete user:", error)
+      handleClose()
+      loadUsers()
+    } catch (error: any) {
+      console.error("Failed to create user:", error)
       toast({
         title: "Error",
-        description: "Failed to delete user",
+        description: error.response?.data?.message || "Failed to create user",
         variant: "destructive",
       })
+    }
+  }
+
+  const onEditSubmit = async (data: any) => {
+    if (selectedUser) {
+      try {
+        await usersApi.update(selectedUser.id, data)
+        toast({
+          title: "Success",
+          description: "User updated successfully",
+        })
+        handleClose()
+        loadUsers()
+      } catch (error) {
+        console.error("Failed to update user:", error)
+        toast({
+          title: "Error",
+          description: "Failed to update user",
+          variant: "destructive",
+        })
+      }
+    }
+  }
+
+  const onDeleteConfirm = async () => {
+    if (selectedUser) {
+      try {
+        await usersApi.delete(selectedUser.id)
+        toast({
+          title: "Success",
+          description: "User deleted successfully",
+        })
+        handleClose()
+        loadUsers()
+      } catch (error) {
+        console.error("Failed to delete user:", error)
+        toast({
+          title: "Error",
+          description: "Failed to delete user",
+          variant: "destructive",
+        })
+      }
     }
   }
 
@@ -63,15 +131,10 @@ export default function AdminUsersPage() {
             <h1 className="text-3xl font-bold text-foreground">Users</h1>
             <p className="text-muted-foreground mt-2">Manage all users and permissions</p>
           </div>
-          {/* Add User button removed as registration is usually public or handled differently, 
-              but kept if admin creation is needed. For now, we'll keep it but it might need a proper create page. 
-          */}
-          {/* <Button asChild>
-            <Link href="/app/admin/users/new" className="gap-2">
-              <Plus size={18} />
-              Add User
-            </Link>
-          </Button> */}
+          <Button onClick={handleCreate} className="gap-2">
+            <Plus size={18} />
+            Add User
+          </Button>
         </div>
 
         {/* Stats */}
@@ -144,18 +207,22 @@ export default function AdminUsersPage() {
                       </td>
                       <td className="px-6 py-4 text-right">
                         <div className="flex items-center justify-end gap-2">
-                          <Link
-                            href={`/app/admin/users/${user.id}/edit`}
-                            className="p-1.5 text-muted-foreground hover:bg-muted rounded-lg transition"
+                          <Button
+                            variant="ghost"
+                            size="icon"
+                            onClick={() => handleEdit(user)}
+                            className="h-8 w-8 text-muted-foreground hover:text-foreground"
                           >
-                            <Edit2 size={18} />
-                          </Link>
-                          <button
-                            onClick={() => handleDelete(user.id)}
-                            className="p-1.5 text-muted-foreground hover:bg-destructive/10 hover:text-destructive rounded-lg transition"
+                            <Edit2 size={16} />
+                          </Button>
+                          <Button
+                            variant="ghost"
+                            size="icon"
+                            onClick={() => handleDelete(user)}
+                            className="h-8 w-8 text-muted-foreground hover:text-destructive hover:bg-destructive/10"
                           >
-                            <Trash2 size={18} />
-                          </button>
+                            <Trash2 size={16} />
+                          </Button>
                         </div>
                       </td>
                     </tr>
@@ -165,6 +232,17 @@ export default function AdminUsersPage() {
             </div>
           </Card>
         )}
+
+        <UserDialogs 
+          selectedUser={selectedUser}
+          isCreateOpen={isCreateOpen}
+          isEditOpen={isEditOpen}
+          isDeleteOpen={isDeleteOpen}
+          onClose={handleClose}
+          onCreateSubmit={onCreateSubmit}
+          onEditSubmit={onEditSubmit}
+          onDeleteConfirm={onDeleteConfirm}
+        />
       </div>
     </div>
   )

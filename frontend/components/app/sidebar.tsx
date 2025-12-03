@@ -63,16 +63,6 @@ export function AppSidebar({ className }: AppSidebarProps) {
 
       {/* Footer */}
       <div className="border-t border-border p-4 space-y-2">
-        <Link
-          href="#settings"
-          className="flex items-center gap-3 px-4 py-2 rounded-lg text-sm font-medium text-muted-foreground hover:text-foreground hover:bg-muted/50 transition"
-        >
-          <Settings size={18} />
-          {t('dashboard.settings')}
-        </Link>
-        <div className="px-4">
-          <ModeToggle />
-        </div>
         <div className="px-4 py-2 text-xs text-muted-foreground">
           Created by <a href="https://github.com/rioovs" target="_blank" rel="noopener noreferrer" className="hover:text-foreground underline">rioovs</a>
         </div>

@@ -882,22 +882,11 @@ function VehicleForm({ initialData, onSubmit, isLoading }) {
     }, this);
 }
 }),
-"[project]/lib/api/vehicles.ts [app-ssr] (ecmascript)", ((__turbopack_context__) => {
-"use strict";
+"[project]/lib/api/vehicles.ts [app-ssr] (ecmascript)", ((__turbopack_context__, module, exports) => {
 
-__turbopack_context__.s([
-    "vehiclesApi",
-    ()=>vehiclesApi
-]);
-var __TURBOPACK__imported__module__$5b$project$5d2f$lib$2f$api$2d$client$2e$ts__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/lib/api-client.ts [app-ssr] (ecmascript)");
-;
-const vehiclesApi = {
-    getAll: ()=>__TURBOPACK__imported__module__$5b$project$5d2f$lib$2f$api$2d$client$2e$ts__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["apiClient"].get('/api/vehicles'),
-    getOne: (id)=>__TURBOPACK__imported__module__$5b$project$5d2f$lib$2f$api$2d$client$2e$ts__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["apiClient"].get(`/api/vehicles/${id}`),
-    create: (data)=>__TURBOPACK__imported__module__$5b$project$5d2f$lib$2f$api$2d$client$2e$ts__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["apiClient"].post('/api/vehicles', data),
-    update: (id, data)=>__TURBOPACK__imported__module__$5b$project$5d2f$lib$2f$api$2d$client$2e$ts__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["apiClient"].put(`/api/vehicles/${id}`, data),
-    delete: (id)=>__TURBOPACK__imported__module__$5b$project$5d2f$lib$2f$api$2d$client$2e$ts__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["apiClient"].delete(`/api/vehicles/${id}`)
-};
+const e = new Error("Could not parse module '[project]/lib/api/vehicles.ts'\n\nExpected '{', got 'interface'");
+e.code = 'MODULE_UNPARSABLE';
+throw e;
 }),
 "[project]/app/app/vehicles/new/page.tsx [app-ssr] (ecmascript)", ((__turbopack_context__) => {
 "use strict";

@@ -13,6 +13,16 @@ export class ProfilesController {
     return this.profilesService.getProfile(user.id);
   }
 
+  @Post('users')
+  @UseGuards(SupabaseAuthGuard)
+  async createUser(@Body() data: any, @CurrentUser() user: any) {
+    const profile = await this.profilesService.getProfile(user.id);
+    if (profile?.role !== 'ADMIN') {
+      throw new ForbiddenException('Admin only');
+    }
+    return this.profilesService.createUser(data);
+  }
+
   @Post('profiles')
   async createProfile(@Body() data: { id: string; full_name: string }) {
     return this.profilesService.createProfile(data);
@@ -23,9 +33,7 @@ export class ProfilesController {
   async findAll(@CurrentUser() user: any) {
     const profile = await this.profilesService.getProfile(user.id);
     if (profile?.role !== 'ADMIN') {
-      // throw new ForbiddenException('Admin only');
-      // For now, allow all for testing or handle gracefully
-      // return [];
+      throw new ForbiddenException('Admin only');
     }
     return this.profilesService.findAll();
   }
@@ -35,7 +43,7 @@ export class ProfilesController {
   async update(@Param('id') id: string, @Body() data: any, @CurrentUser() user: any) {
     const profile = await this.profilesService.getProfile(user.id);
     if (profile?.role !== 'ADMIN' && user.id !== id) {
-       // throw new ForbiddenException('Unauthorized');
+       throw new ForbiddenException('Unauthorized');
     }
     return this.profilesService.update(id, data);
   }
@@ -45,7 +53,7 @@ export class ProfilesController {
   async delete(@Param('id') id: string, @CurrentUser() user: any) {
     const profile = await this.profilesService.getProfile(user.id);
     if (profile?.role !== 'ADMIN') {
-       // throw new ForbiddenException('Admin only');
+      throw new ForbiddenException('Admin only');
     }
     return this.profilesService.delete(id);
   }

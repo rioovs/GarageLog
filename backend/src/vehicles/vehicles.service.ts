@@ -13,6 +13,27 @@ export class VehiclesService {
     });
   }
 
+  async getOptions(userId: string) {
+    const brands = await this.prisma.vehicle.findMany({
+      where: { user_id: userId },
+      select: { brand: true },
+      distinct: ['brand'],
+      orderBy: { brand: 'asc' },
+    });
+
+    const models = await this.prisma.vehicle.findMany({
+      where: { user_id: userId },
+      select: { model: true },
+      distinct: ['model'],
+      orderBy: { model: 'asc' },
+    });
+
+    return {
+      brands: brands.map(b => b.brand),
+      models: models.map(m => m.model),
+    };
+  }
+
   async findOne(id: string, userId: string) {
     const vehicle = await this.prisma.vehicle.findUnique({
       where: { id },

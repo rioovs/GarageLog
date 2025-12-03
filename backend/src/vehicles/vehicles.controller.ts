@@ -14,6 +14,11 @@ export class VehiclesController {
     return this.vehiclesService.findAll(user.id);
   }
 
+  @Get('options')
+  getOptions(@CurrentUser() user: any) {
+    return this.vehiclesService.getOptions(user.id);
+  }
+
   @Get(':id')
   findOne(@Param('id') id: string, @CurrentUser() user: any) {
     return this.vehiclesService.findOne(id, user.id);

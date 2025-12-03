@@ -47,7 +47,7 @@ export default function DashboardPage() {
             {/* Main Content - Left Side */}
             <div className="col-span-12 lg:col-span-8 space-y-6">
                 {/* Top Row: Profile + Stats */}
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-6 h-[320px]">
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:h-[320px]">
                     {/* Profile Card */}
                     <div className="md:col-span-1 h-full">
                         <ProfileCard 

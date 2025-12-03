@@ -6,6 +6,14 @@ import { Input } from "@/components/ui/input"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Plus, Trash2, Edit2, Save, X } from "lucide-react"
 import { useToast } from "@/components/ui/use-toast"
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select"
+import { useCurrency } from "@/hooks/use-currency"
 
 interface ServiceType {
   id: string
@@ -15,6 +23,7 @@ interface ServiceType {
 
 export function VehicleSettings() {
   const { toast } = useToast()
+  const { currency, setCurrency, isUpdating } = useCurrency()
   const [serviceTypes, setServiceTypes] = useState<ServiceType[]>([])
   const [newType, setNewType] = useState("")
   const [newCost, setNewCost] = useState("")
@@ -210,7 +219,18 @@ export function VehicleSettings() {
                <p className="text-sm text-muted-foreground">Default currency for cost display</p>
              </div>
              <div className="flex items-center gap-2">
-               <span className="text-sm font-medium bg-muted px-3 py-1 rounded">USD ($)</span>
+               <Select value={currency} onValueChange={setCurrency} disabled={isUpdating}>
+                 <SelectTrigger className="w-[180px]">
+                   <SelectValue placeholder="Select currency" />
+                 </SelectTrigger>
+                 <SelectContent>
+                   <SelectItem value="USD">USD ($)</SelectItem>
+                   <SelectItem value="IDR">IDR (Rp)</SelectItem>
+                   <SelectItem value="EUR">EUR (€)</SelectItem>
+                   <SelectItem value="GBP">GBP (£)</SelectItem>
+                   <SelectItem value="JPY">JPY (¥)</SelectItem>
+                 </SelectContent>
+               </Select>
              </div>
            </div>
            

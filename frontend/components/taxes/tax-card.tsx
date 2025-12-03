@@ -6,6 +6,7 @@ import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
 import { Edit, Trash2, Calendar, FileText, DollarSign } from "lucide-react"
 import { TaxRecord } from "@/lib/api/taxes"
+import { useCurrency } from "@/hooks/use-currency"
 
 interface TaxCardProps {
   tax: TaxRecord
@@ -14,6 +15,7 @@ interface TaxCardProps {
 }
 
 export function TaxCard({ tax, onEdit, onDelete }: TaxCardProps) {
+  const { formatCurrency } = useCurrency()
   return (
     <Card className="overflow-hidden border-border shadow-sm hover:shadow-md transition-shadow group p-5 flex flex-col justify-between h-full">
       <div>
@@ -38,7 +40,7 @@ export function TaxCard({ tax, onEdit, onDelete }: TaxCardProps) {
               <DollarSign size={16} /> Amount
             </span>
             <span className="font-bold text-foreground text-lg">
-              ${Number(tax.amount).toFixed(2)}
+              {formatCurrency(tax.amount)}
             </span>
           </div>
           

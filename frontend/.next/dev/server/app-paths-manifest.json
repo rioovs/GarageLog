@@ -9,6 +9,7 @@
   "/(marketing)/page": "app/(marketing)/page.js",
   "/(marketing)/security/page": "app/(marketing)/security/page.js",
   "/_not-found/page": "app/_not-found/page.js",
+  "/app/admin/users/[id]/edit/page": "app/app/admin/users/[id]/edit/page.js",
   "/app/admin/users/page": "app/app/admin/users/page.js",
   "/app/page": "app/app/page.js",
   "/app/taxes/new/page": "app/app/taxes/new/page.js",
