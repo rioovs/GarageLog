@@ -41,7 +41,7 @@ export interface Vehicle {
   plate_number: string;
   brand: string;
   model: string;
-  type?: VehicleType;
+  type: VehicleType;
   year: number;
   color: string;
   owner_name?: string;
