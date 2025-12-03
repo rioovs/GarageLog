@@ -1,0 +1,17 @@
+{
+  "/(app)/taxes/new/page": "app/(app)/taxes/new/page.js",
+  "/(app)/taxes/page": "app/(app)/taxes/page.js",
+  "/(app)/vehicles/[id]/edit/page": "app/(app)/vehicles/[id]/edit/page.js",
+  "/(app)/vehicles/[id]/page": "app/(app)/vehicles/[id]/page.js",
+  "/(app)/vehicles/[id]/services/new/page": "app/(app)/vehicles/[id]/services/new/page.js",
+  "/(app)/vehicles/new/page": "app/(app)/vehicles/new/page.js",
+  "/(auth)/login/page": "app/(auth)/login/page.js",
+  "/(auth)/register/page": "app/(auth)/register/page.js",
+  "/(marketing)/page": "app/(marketing)/page.js",
+  "/_global-error/page": "app/_global-error/page.js",
+  "/_not-found/page": "app/_not-found/page.js",
+  "/app/admin/users/page": "app/app/admin/users/page.js",
+  "/app/page": "app/app/page.js",
+  "/app/taxes/page": "app/app/taxes/page.js",
+  "/app/vehicles/page": "app/app/vehicles/page.js"
+}

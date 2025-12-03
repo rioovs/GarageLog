@@ -1,0 +1,17 @@
+{
+  "headers": {
+    "x-nextjs-stale-time": "300",
+    "x-nextjs-prerender": "1",
+    "x-next-cache-tags": "_N_T_/layout,_N_T_/(app)/layout,_N_T_/(app)/taxes/layout,_N_T_/(app)/taxes/new/layout,_N_T_/(app)/taxes/new/page,_N_T_/taxes/new"
+  },
+  "segmentPaths": [
+    "/_tree",
+    "/_full",
+    "/!KGFwcCk/taxes/new/__PAGE__",
+    "/!KGFwcCk/taxes/new",
+    "/!KGFwcCk/taxes",
+    "/!KGFwcCk",
+    "/_index",
+    "/_head"
+  ]
+}

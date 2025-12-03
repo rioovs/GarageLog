@@ -139,6 +139,23 @@ npm run dev
    - Backend: Create auth guard for JWT validation
    - Frontend: Create Supabase client and auth context
 
+### 🔐 Authentication Configuration
+
+#### Enable Google Login
+1. Go to your Supabase Dashboard > **Authentication** > **Providers**.
+2. Click on **Google**.
+3. Toggle **Enable Sign in with Google**.
+4. Enter your **Client ID** and **Client Secret** (obtained from Google Cloud Console).
+5. Copy the **Callback URL** from Supabase and add it to your Google Cloud Console > APIs & Services > Credentials > OAuth 2.0 Client IDs > Authorized redirect URIs.
+6. Click **Save**.
+
+#### Disable Email Verification (Optional)
+To allow users to log in immediately after registration without verifying their email:
+1. Go to your Supabase Dashboard > **Authentication** > **Providers**.
+2. Click on **Email**.
+3. Toggle **OFF** "Confirm email".
+4. Click **Save**.
+
 5. **Implement API Endpoints**:
    - Create NestJS controllers and services for each module
 

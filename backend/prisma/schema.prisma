@@ -56,8 +56,23 @@ model Profile {
   updated_at DateTime  @updatedAt @map("updated_at")
   
   vehicles   Vehicle[]
+  settings   Setting?
   
   @@map("profiles")
+}
+
+model Setting {
+  id        String   @id @default(uuid()) @db.Uuid
+  user_id   String   @unique @db.Uuid
+  currency  String   @default("USD")
+  language  String   @default("en")
+  theme     String   @default("light")
+  created_at DateTime @default(now()) @map("created_at")
+  updated_at DateTime @updatedAt @map("updated_at")
+
+  user      Profile  @relation(fields: [user_id], references: [id], onDelete: Cascade)
+
+  @@map("settings")
 }
 
 model Vehicle {

@@ -7,9 +7,20 @@ import { VehiclesModule } from './vehicles/vehicles.module';
 import { ServicesModule } from './services/services.module';
 import { TaxesModule } from './taxes/taxes.module';
 import { ProfilesModule } from './profiles/profiles.module';
+import { DashboardModule } from './dashboard/dashboard.module';
+import { SettingsModule } from './settings/settings.module';
 
 @Module({
-  imports: [PrismaModule, AuthModule, ProfilesModule, VehiclesModule, ServicesModule, TaxesModule],
+  imports: [
+    PrismaModule,
+    AuthModule,
+    ProfilesModule,
+    VehiclesModule,
+    ServicesModule,
+    TaxesModule,
+    DashboardModule,
+    SettingsModule,
+  ],
   controllers: [AppController],
   providers: [AppService],
 })

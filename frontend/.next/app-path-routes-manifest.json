@@ -1,0 +1,17 @@
+{
+  "/(app)/taxes/new/page": "/taxes/new",
+  "/(app)/taxes/page": "/taxes",
+  "/(app)/vehicles/[id]/edit/page": "/vehicles/[id]/edit",
+  "/(app)/vehicles/[id]/page": "/vehicles/[id]",
+  "/(app)/vehicles/[id]/services/new/page": "/vehicles/[id]/services/new",
+  "/(app)/vehicles/new/page": "/vehicles/new",
+  "/(auth)/login/page": "/login",
+  "/(auth)/register/page": "/register",
+  "/(marketing)/page": "/",
+  "/_global-error/page": "/_global-error",
+  "/_not-found/page": "/_not-found",
+  "/app/admin/users/page": "/app/admin/users",
+  "/app/page": "/app",
+  "/app/taxes/page": "/app/taxes",
+  "/app/vehicles/page": "/app/vehicles"
+}

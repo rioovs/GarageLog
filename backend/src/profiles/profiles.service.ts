@@ -19,4 +19,28 @@ export class ProfilesService {
       },
     });
   }
+
+  async findAll() {
+    return this.prisma.profile.findMany({
+      orderBy: { created_at: 'desc' },
+      include: {
+        _count: {
+          select: { vehicles: true },
+        },
+      },
+    });
+  }
+
+  async update(id: string, data: any) {
+    return this.prisma.profile.update({
+      where: { id },
+      data,
+    });
+  }
+
+  async delete(id: string) {
+    return this.prisma.profile.delete({
+      where: { id },
+    });
+  }
 }

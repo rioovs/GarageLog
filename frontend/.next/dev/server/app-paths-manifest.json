@@ -1,0 +1,20 @@
+{
+  "/(auth)/login/page": "app/(auth)/login/page.js",
+  "/(auth)/register/page": "app/(auth)/register/page.js",
+  "/(marketing)/about/page": "app/(marketing)/about/page.js",
+  "/(marketing)/blog/page": "app/(marketing)/blog/page.js",
+  "/(marketing)/docs/page": "app/(marketing)/docs/page.js",
+  "/(marketing)/features/page": "app/(marketing)/features/page.js",
+  "/(marketing)/help/page": "app/(marketing)/help/page.js",
+  "/(marketing)/page": "app/(marketing)/page.js",
+  "/(marketing)/security/page": "app/(marketing)/security/page.js",
+  "/_not-found/page": "app/_not-found/page.js",
+  "/app/admin/users/page": "app/app/admin/users/page.js",
+  "/app/page": "app/app/page.js",
+  "/app/taxes/new/page": "app/app/taxes/new/page.js",
+  "/app/taxes/page": "app/app/taxes/page.js",
+  "/app/vehicles/[id]/edit/page": "app/app/vehicles/[id]/edit/page.js",
+  "/app/vehicles/[id]/page": "app/app/vehicles/[id]/page.js",
+  "/app/vehicles/new/page": "app/app/vehicles/new/page.js",
+  "/app/vehicles/page": "app/app/vehicles/page.js"
+}
