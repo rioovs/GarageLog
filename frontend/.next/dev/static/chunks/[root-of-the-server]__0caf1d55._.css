@@ -108,7 +108,6 @@
     --color-orange-800: #9f2d00;
     --color-orange-900: #7e2a0c;
     --color-yellow-400: #fac800;
-    --color-yellow-600: #cd8900;
     --color-green-100: #dcfce7;
     --color-green-400: #05df72;
     --color-green-500: #00c758;
@@ -120,7 +119,6 @@
     --color-blue-400: #54a2ff;
     --color-blue-500: #3080ff;
     --color-blue-600: #155dfc;
-    --color-blue-700: #1447e6;
     --color-blue-800: #193cb8;
     --color-blue-900: #1c398e;
     --color-purple-100: #f3e8ff;
@@ -136,11 +134,7 @@
     --color-pink-900: #861043;
     --color-gray-50: #f9fafb;
     --color-gray-100: #f3f4f6;
-    --color-gray-200: #e5e7eb;
-    --color-gray-400: #99a1af;
-    --color-gray-600: #4a5565;
     --color-gray-800: #1e2939;
-    --color-gray-900: #101828;
     --color-black: #000;
     --color-white: #fff;
     --spacing: .25rem;
@@ -207,7 +201,6 @@
       --color-orange-800: lab(37.1566% 46.6433 50.5562);
       --color-orange-900: lab(30.2951% 36.0434 37.671);
       --color-yellow-400: lab(83.2664% 8.65132 106.895);
-      --color-yellow-600: lab(62.7799% 22.4198 86.1544);
       --color-green-100: lab(96.186% -13.8464 6.52362);
       --color-green-400: lab(78.503% -64.9265 39.7492);
       --color-green-500: lab(70.5521% -66.5147 45.8072);
@@ -219,7 +212,6 @@
       --color-blue-400: lab(65.0361% -1.42062 -56.9803);
       --color-blue-500: lab(54.1736% 13.3368 -74.6839);
       --color-blue-600: lab(44.0605% 29.0279 -86.0352);
-      --color-blue-700: lab(36.9089% 35.0961 -85.6872);
       --color-blue-800: lab(30.2514% 27.7854 -70.2699);
       --color-blue-900: lab(26.1542% 15.7545 -51.5504);
       --color-purple-100: lab(93.3333% 6.9744 -9.83434);
@@ -235,11 +227,7 @@
       --color-pink-900: lab(29.4367% 49.3962 3.35757);
       --color-gray-50: lab(98.2596% -.247031 -.706708);
       --color-gray-100: lab(96.1596% -.082314 -1.13575);
-      --color-gray-200: lab(91.6229% -.159085 -2.26791);
-      --color-gray-400: lab(65.9269% -.832707 -8.17474);
-      --color-gray-600: lab(35.6337% -1.58697 -10.8425);
       --color-gray-800: lab(16.1051% -1.18239 -11.7533);
-      --color-gray-900: lab(8.11897% .811279 -12.254);
     }
   }
 
@@ -1127,10 +1115,6 @@
     height: 300px;
   }
 
-  .h-\[320px\] {
-    height: 320px;
-  }
-
   .h-\[calc\(100\%-1px\)\] {
     height: calc(100% - 1px);
   }
@@ -1317,10 +1301,6 @@
 
   .w-\[180px\] {
     width: 180px;
-  }
-
-  .w-\[400px\] {
-    width: 400px;
   }
 
   .w-auto {
@@ -1794,10 +1774,6 @@
     border-color: var(--border);
   }
 
-  :where(.divide-gray-200 > :not(:last-child)) {
-    border-color: var(--color-gray-200);
-  }
-
   .self-start {
     align-self: flex-start;
   }
@@ -2011,10 +1987,6 @@
     }
   }
 
-  .border-gray-200 {
-    border-color: var(--color-gray-200);
-  }
-
   .border-green-500\/20 {
     border-color: #00c75833;
   }
@@ -2147,10 +2119,6 @@
 
   .bg-gray-100 {
     background-color: var(--color-gray-100);
-  }
-
-  .bg-gray-900 {
-    background-color: var(--color-gray-900);
   }
 
   .bg-green-100 {
@@ -2464,10 +2432,6 @@
 
   .p-1 {
     padding: calc(var(--spacing) * 1);
-  }
-
-  .p-1\.5 {
-    padding: calc(var(--spacing) * 1.5);
   }
 
   .p-2 {
@@ -2834,10 +2798,6 @@
     color: var(--background);
   }
 
-  .text-blue-600 {
-    color: var(--color-blue-600);
-  }
-
   .text-blue-800 {
     color: var(--color-blue-800);
   }
@@ -2872,20 +2832,8 @@
     }
   }
 
-  .text-gray-400 {
-    color: var(--color-gray-400);
-  }
-
-  .text-gray-600 {
-    color: var(--color-gray-600);
-  }
-
   .text-gray-800 {
     color: var(--color-gray-800);
-  }
-
-  .text-gray-900 {
-    color: var(--color-gray-900);
   }
 
   .text-green-600 {
@@ -2990,10 +2938,6 @@
     .text-white\/90 {
       color: color-mix(in oklab, var(--color-white) 90%, transparent);
     }
-  }
-
-  .text-yellow-600 {
-    color: var(--color-yellow-600);
   }
 
   .capitalize {
@@ -3816,24 +3760,6 @@
   }
 
   @media (hover: hover) {
-    .hover\:bg-gray-50:hover {
-      background-color: var(--color-gray-50);
-    }
-  }
-
-  @media (hover: hover) {
-    .hover\:bg-gray-100:hover {
-      background-color: var(--color-gray-100);
-    }
-  }
-
-  @media (hover: hover) {
-    .hover\:bg-gray-800:hover {
-      background-color: var(--color-gray-800);
-    }
-  }
-
-  @media (hover: hover) {
     .hover\:bg-muted:hover {
       background-color: var(--muted);
     }
@@ -3860,12 +3786,6 @@
       .hover\:bg-primary\/90:hover {
         background-color: color-mix(in oklab, var(--primary) 90%, transparent);
       }
-    }
-  }
-
-  @media (hover: hover) {
-    .hover\:bg-red-100:hover {
-      background-color: var(--color-red-100);
     }
   }
 
@@ -3900,12 +3820,6 @@
   }
 
   @media (hover: hover) {
-    .hover\:text-blue-700:hover {
-      color: var(--color-blue-700);
-    }
-  }
-
-  @media (hover: hover) {
     .hover\:text-destructive:hover {
       color: var(--destructive);
     }
@@ -3926,12 +3840,6 @@
   @media (hover: hover) {
     .hover\:text-primary:hover {
       color: var(--primary);
-    }
-  }
-
-  @media (hover: hover) {
-    .hover\:text-red-600:hover {
-      color: var(--color-red-600);
     }
   }
 

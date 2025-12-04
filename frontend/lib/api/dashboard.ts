@@ -23,6 +23,11 @@ export interface RecentService {
 }
 
 export interface DashboardData {
+  user: {
+    name: string;
+    email: string;
+    role: string;
+  };
   stats: DashboardStats[];
   upcomingTasks: UpcomingTask[];
   recentServices: RecentService[];
